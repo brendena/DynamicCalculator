@@ -7,8 +7,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js">
+  </script>
+  <script>
+    /*http://docs.mathjax.org/en/latest/config-files.html#the-mml-htmlormml-configuration-file*/
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/MathML","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
+      extensions: ["mml2jax.js","MathMenu.js","MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js"]
+    });
+    console.log("try this out");
+    console.log(MathJax.Hub.config.root)
+  </script>
 </head>
 <body>
   <app-root></app-root>
+
 </body>
 </html>

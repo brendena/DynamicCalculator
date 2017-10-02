@@ -1,0 +1,21 @@
+math related
+
+Math jax
+http://docs.mathjax.org/en/latest/start.html
+
+used for displaying math notation nicely
+
+
+algebra.js
+http://algebra.js.org
+used to be able to fill in missing values if you have the results
+
+
+Parsing library to help with algebra.js
+
+
+//others
+
+parser library
+
+https://github.com/jneen/parsimmon
