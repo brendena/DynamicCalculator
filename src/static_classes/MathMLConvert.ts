@@ -5,18 +5,30 @@ export class MathMLConvert  {
   finalArray: string[];
   constructor(){
   }
-  solve(){
+  solve(variableValues){
+    //var variablesKey = Object.keys(variableValues);
+    const mappedFinalArray = this.finalArray.map(function(value){
+      if(variableValues[value] == undefined){
+        return value;
+      }
+      else{
+        return variableValues[value];
+      }
+    });
+    console.log(mappedFinalArray);
+
     var convertingStack = []
     var returnValue = NaN;
+    var broke = false;
     const regNumber = new RegExp('^\\d+$');
     const operators = new RegExp('^[/+⋅-]');//check first line of code for these characters
     //console.log("solving postfix")
     let item;
-    for(var i = 0; i < this.finalArray.length; i++)
+    for(var i = 0; i < mappedFinalArray.length && broke == false; i++)
     {
-      item = this.finalArray[i];
+      item = mappedFinalArray[i];
       //console.log(convertingStack)
-      if(regNumber.test(item))
+      if(typeof(item) == "number" || regNumber.test(item))
       {
         convertingStack.push(parseInt(item));
       }
@@ -40,7 +52,13 @@ export class MathMLConvert  {
         }
         convertingStack.push(pushValue)
       }
+      else {
+        broke = true;
+      }
     };
+    if(broke === false){
+      returnValue = convertingStack.pop();
+    }
     return returnValue;
   }
   parseMathML(mathMLText){

@@ -40,12 +40,8 @@ export class EquationDisplayComponent {
       with there key and the new value*/
     this.userInputSubject.asObservable().subscribe(function(inputChange){
       this.usersInputValues = this.usersInputValues.set(inputChange.shortHand, inputChange.value);
-      const keyForUserInputValues = this.usersInputValues.keySeq().toArray();
-      var expression = this.equation.equationString
-      keyForUserInputValues.forEach(function(key){
-        expression = expression.replace(new RegExp(key, 'g'), this.usersInputValues.get(key))
-      }.bind(this));
-      this.finalValue = eval(expression);
+
+      this.finalValue = this.mathMLConvert.solve(this.getValueInputValue())
     }.bind(this));
 
     var mathMlObserver = this.mathMLAcqureService.getMathMLObserver();
@@ -53,12 +49,28 @@ export class EquationDisplayComponent {
     mathMlObserver.subscribe(function(mathMLText){
       //do stuff;
       this.mathMLConvert.parseMathML(mathMLText);
-      this.mathMLConvert.solve();
+      console.log(this.getValueInputValue())
+      this.finalValue = this.mathMLConvert.solve(this.getValueInputValue());
     }.bind(this));
 
     this.mathMLAcqureService.getMLFile(this.equation.fileName)
-    //this.mathMLAcqureService.getMLFile();
+  }
+
+  getValueInputValue():any{
+    const keyForUserInputValues = this.usersInputValues.keySeq().toArray();
+    var dict = []
+    keyForUserInputValues.forEach(function(key){
+      dict[key] = this.usersInputValues.get(key)
+    }.bind(this))
+    return dict;
   }
 
 
 }
+/*
+const keyForUserInputValues = this.usersInputValues.keySeq().toArray();
+var expression = this.equation.equationString
+keyForUserInputValues.forEach(function(key){
+  expression = expression.replace(new RegExp(key, 'g'), this.usersInputValues.get(key))
+}.bind(this));
+*/
