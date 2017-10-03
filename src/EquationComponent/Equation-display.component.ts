@@ -3,12 +3,15 @@ import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
 import { Equation }          from '../static_classes/Equation'
 import { Variable }          from '../static_classes/Variable'
+import { MathMLAcqureService } from '../data/mathML-acquire.service'
+import { MathMLConvert } from '../static_classes/MathMLConvert';
+
 import 'rxjs'
 import { List, Map } from 'immutable';
 
 @Component({
   selector: 'equation-display',
-  providers: [],
+  providers: [MathMLAcqureService],
   templateUrl: './Equation-display.html',
   styleUrls: ['./Equation-display.css'],
 })
@@ -16,8 +19,10 @@ export class EquationDisplayComponent {
   @Input() equation: Equation;
   userInputSubject = new Subject<{"shortHand":string ,"value":number}>();
   usersInputValues: Map<string,number>;
+  mathMLTextObserver: Observable<string>;
+  mathMLConvert: MathMLConvert = new MathMLConvert();
   finalValue:number;
-  constructor(){
+  constructor(private mathMLAcqureService: MathMLAcqureService){
 
   }
   /*
@@ -42,6 +47,17 @@ export class EquationDisplayComponent {
       }.bind(this));
       this.finalValue = eval(expression);
     }.bind(this));
+
+    var mathMlObserver = this.mathMLAcqureService.getMathMLObserver();
+    this.mathMLTextObserver = mathMlObserver;
+    mathMlObserver.subscribe(function(mathMLText){
+      //do stuff;
+      this.mathMLConvert.parseMathML(mathMLText);
+      this.mathMLConvert.solve();
+    }.bind(this));
+
+    this.mathMLAcqureService.getMLFile(this.equation.fileName)
+    //this.mathMLAcqureService.getMLFile();
   }
 
 

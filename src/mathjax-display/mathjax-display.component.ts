@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, NgModule } from '@angular/core';
+import { Observable }        from 'rxjs/Observable';
 //import { MathJax } from 'mathjax'
 declare var  MathJax :any;
 
@@ -12,36 +13,25 @@ declare var  MathJax :any;
   `
 })
 export class MathjaxDisplayComponent {
-
+  @Input() mathMLTextObserver: Observable<string>;
   constructor(){
 
 
   }
-  addMathMl(){
+  /*so as long as i append the data into the html body after it started
+  then i'm good*/
+  addMathMl(mathMLText){
     /*access a single element*/
-    document.getElementById("append").innerHTML = `
-    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-         <semantics>
-          <mrow>
-           <mn>3</mn>
-           <mo stretchy="false">/</mo>
-           <mn>3</mn>
-           <mo stretchy="false">⋅</mo>
-           <mn>33</mn>
-          </mrow>
-          <annotation encoding="StarMath 5.0">3 / 3 cdot 33 </annotation>
-         </semantics>
-        </math>`;
+    document.getElementById("append").innerHTML = mathMLText
     var math = document.getElementById("append");
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
-
   }
-  ngOnInit(){
 
-    /*so as long as i append the data into the html body after it started
-    then i'm good*/
-    console.log(MathJax)
-    console.log("ya")
-    this.addMathMl();
+
+  ngOnInit(){
+    this.mathMLTextObserver.subscribe(function(text){
+      this.addMathMl(text);
+    }.bind(this));
+
   }
 }

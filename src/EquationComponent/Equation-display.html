@@ -1,6 +1,6 @@
 <p>still testing shit out</p>
 <p>{{equation.title}}</p>
-<mathjax-display></mathjax-display>
+<mathjax-display [mathMLTextObserver]="mathMLTextObserver"></mathjax-display>
 <div id="variableContainer">
   <variable-display *ngFor="let variable of equation.variables"
                     [variable]="variable"

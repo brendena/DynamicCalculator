@@ -33,7 +33,6 @@ export class EquationAcquireService {
   http://jasonwatmore.com/post/2016/12/01/angular-2-communicating-between-components-with-observable-subject
   */
   search():Observable<GroupEquations>{
-
     return  this._http
                .get("assets/calculator.json")
                .map(function(response: Response){
