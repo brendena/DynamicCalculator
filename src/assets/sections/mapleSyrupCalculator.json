@@ -1,0 +1,35 @@
+{
+  "title": "Maple Syrup Calculator",
+  "groups":[
+      {"title":"Bulk Sap and Syrup Selling",
+        "equations":[
+            "QuantityTimesPrice"
+          ]
+      },
+      {"title":"Bulk Syrup Buying",
+        "equations":[
+            "equationTitle"
+          ]
+      },
+      {"title":"Evaporator Calcualtorions",
+        "equations":[
+            "equationTitle"
+          ]
+      },
+      {"title":"Sugar Content",
+        "equations":[
+            "equationTitle"
+          ]
+      },
+      {"title":"Reverse Osmosis",
+        "equations":[
+            "equationTitle"
+          ]
+      },
+      {"title":"Brix Adjustment",
+        "equations":[
+            "equationTitle"
+          ]
+      }
+  ]
+}

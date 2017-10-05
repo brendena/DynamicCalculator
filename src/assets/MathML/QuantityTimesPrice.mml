@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+ <semantics>
+  <mrow>
+   <mi mathvariant="italic">Pound</mi>
+   <mo stretchy="false">∗</mo>
+   <mi mathvariant="italic">Price</mi>
+  </mrow>
+  <annotation encoding="StarMath 5.0">Pound * Price </annotation>
+ </semantics>
+</math>

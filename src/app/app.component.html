@@ -10,16 +10,16 @@ https://github.com/angular/material2
 <md-sidenav-container id="sideNavContainer">
   <md-sidenav #sidenav  opened="false" id="pageSideNav">
 
-    <div *ngIf="groupEquations?.title" >
+    <div *ngIf="sectionEquations?.title" >
 
 
-      <div id="headerNavBar">{{groupEquations.title}}</div>
+      <div id="headerNavBar">{{sectionEquations.title}}</div>
 
       <a routerLink="about" class="equationSelectButtons" >
         about page
       </a>
 
-      <a *ngFor="let equation of groupEquations.equations" class="equationSelectButtons" routerLink="equation/{{equation.title}}">
+      <a *ngFor="let equation of sectionEquations.equations" class="equationSelectButtons" routerLink="equation/{{equation.title}}">
          {{equation.title}}
       </a>
 

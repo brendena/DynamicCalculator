@@ -1,0 +1,7 @@
+.mathJax {
+  margin:-1em;
+  font-size:5vw;
+  padding-bottom:.2em;
+  /*kind of a hack the mathjax as a 1em and i can't
+  easly get to it without modifying the config file */
+}

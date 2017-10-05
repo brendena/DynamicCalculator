@@ -10,8 +10,12 @@ import { EquationDisplayComponent } from '../EquationComponent/Equation-display.
 import { VariableDisplayComponent } from '../VariableComponent/Variable-display.component';
 import { AboutPageComponent } from '../about/about.component';
 import { MathjaxDisplayComponent } from '../mathjax-display/mathjax-display.component';
+import { EquationAcquireService } from '../data/equations-acquire.service'
+import { SectionEquationAcquireService } from '../data/section-equation-acquire.service'
+import { EquationContainerComponent } from '../EquationContainer/equation-container.component';
 
-import {MdButtonModule, MdCheckboxModule, MatSidenavModule, MatCardModule, MatInputModule} from '@angular/material';
+
+import {MdButtonModule, MdCheckboxModule, MatSidenavModule, MatCardModule, MatInputModule, MatToolbarModule} from '@angular/material';
 
 import { routes } from './app.router';
 
@@ -22,7 +26,8 @@ import { routes } from './app.router';
     EquationDisplayComponent,
     VariableDisplayComponent,
     AboutPageComponent,
-    MathjaxDisplayComponent
+    MathjaxDisplayComponent,
+    EquationContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +39,10 @@ import { routes } from './app.router';
     MatSidenavModule,
     MatCardModule,
     MatInputModule,
+    MatToolbarModule,
     routes
   ],
-  providers: [],
+  providers: [EquationAcquireService,SectionEquationAcquireService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

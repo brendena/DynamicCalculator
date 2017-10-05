@@ -1,29 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { EquationAcquireService } from '../data/equations-acquire.service'
+import { SectionEquationAcquireService } from '../data/section-equation-acquire.service'
+
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
-import { GroupEquations } from '../static_classes/GroupEquations'
+import { SectionEquations } from '../static_classes/SectionEquations'
 import 'rxjs'
 
 @Component({
   selector: 'app-root',
-  providers: [EquationAcquireService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'app';
-  groupEquations: GroupEquations;
-  constructor(private equationAcquireService: EquationAcquireService){
+  sectionEquations: SectionEquations;
+  constructor(private sectionAcquireService: SectionEquationAcquireService){
 
   }
   ngOnInit(){
-    this.equationAcquireService.getAll().subscribe(
+
+    this.sectionAcquireService.setSectionConfig("mapleSyrupCalculator");
+    this.sectionAcquireService.getSectionEquationObservable().subscribe(
       function(item){
-        this.groupEquations = item;
+        console.log(item)
+        this.sectionEquations = item;
       }.bind(this),
       function(error){console.log(error)}
     );
+
   }
 }

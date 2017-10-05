@@ -17,11 +17,15 @@ import { List, Map } from 'immutable';
 })
 export class EquationDisplayComponent {
   @Input() equation: Equation;
+
   userInputSubject = new Subject<{"shortHand":string ,"value":number}>();
   usersInputValues: Map<string,number>;
+
   mathMLTextObserver: Observable<string>;
   mathMLConvert: MathMLConvert = new MathMLConvert();
+
   finalValue:number;
+
   constructor(private mathMLAcqureService: MathMLAcqureService){
 
   }
@@ -43,7 +47,7 @@ export class EquationDisplayComponent {
 
       this.finalValue = this.mathMLConvert.solve(this.getValueInputValue())
     }.bind(this));
-
+    /*observer is when mathMl Object get aquired */
     var mathMlObserver = this.mathMLAcqureService.getMathMLObserver();
     this.mathMLTextObserver = mathMlObserver;
     mathMlObserver.subscribe(function(mathMLText){

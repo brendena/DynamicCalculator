@@ -10,7 +10,7 @@ let GroupEquationsImmutable = Record({
 
 export class GroupEquations extends GroupEquationsImmutable {
   title: string;
-  equations:List<Equation>;
+  equations:List<string>;
   constructor(object){
     super(object);
   }

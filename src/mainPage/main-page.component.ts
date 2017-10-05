@@ -1,22 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { EquationAcquireService } from '../data/equations-acquire.service'
+import { SectionEquationAcquireService } from '../data/section-equation-acquire.service'
 
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
+
+import { SectionEquations } from '../static_classes/SectionEquations'
 import { GroupEquations } from '../static_classes/GroupEquations'
-import { Equation } from '../static_classes/Equation';
+
+
 import 'rxjs'
+
+
 
 @Component({
   selector: 'main-page',
-  providers: [EquationAcquireService],
   template: `
-    <p>make it work</p>
-    <div *ngIf="currentEquation" >
-      <equation-display [equation]="currentEquation"></equation-display>
+
+    <div *ngIf="currentGroupEquation" >
+      <p>{{currentGroupEquation.title}}</p>
+      <equation-container [equationName]="title"  *ngFor="let title of currentGroupEquation.equations">
+
+      </equation-container>
     </div>
 
 
@@ -24,49 +31,51 @@ import 'rxjs'
 })
 export class MainPageComponent {
 
-  myGroups: GroupEquations;
+  sectionEquations: SectionEquations;
   currentEquationString: string;
-  currentEquation: Equation;
-  test: any;
-  constructor(private equationAcquireService: EquationAcquireService,private location: Location,private router: Router){
+  currentGroupEquation: GroupEquations;
+  constructor(private equationAcquireService: SectionEquationAcquireService,private location: Location,private router: Router){
     router.events.subscribe(function(val) {
-
-
           this.getCurrentEquation()
-
-        //book = book.setIn(['storeListings', indexOfListingToUpdate, 'price'], 6.80);
-        //this.currentEquation = myGroup.
       }.bind(this));
   }
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  /  Grab all the components
+  /  equations.  Then save them
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   ngOnInit(){
-    console.log("it worked")
-    this.equationAcquireService.getAll().subscribe(
-      function(item){
-        this.myGroups = item;
-        this.test = item.equations;
+
+    this.sectionEquations = this.equationAcquireService.getEquationGroupInstance();
+    this.getCurrentEquation();
+
+    this.equationAcquireService.getSectionEquationObservable().subscribe(
+      function(section){
+        this.sectionEquations = section;
         this.getCurrentEquation();
       }.bind(this),
       function(error){console.log(error)}
     );
+
   }
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  /  Check to see if there are
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   getCurrentEquation(){
 
-
-    if(this.myGroups != undefined){
+    if(this.sectionEquations != undefined){
       const currentLocation = decodeURIComponent(this.location.path().split("/").pop());
+
       if( this.currentEquationString != currentLocation ){
         this.currentEquationString = currentLocation;
 
-        const indexOfCurrentEquation = this.myGroups.get('equations').findIndex(function(equation){
-
-           return equation.title === this.currentEquationString;
-         }.bind(this) );
-
-         if(indexOfCurrentEquation != -1)
-            this.currentEquation = this.myGroups.equations.get(indexOfCurrentEquation);
+        const indexOfEquation = this.sectionEquations.getIndexEquation(this.currentEquationString);
+        console.log(indexOfEquation);
+        if(indexOfEquation != -1)
+          this.currentGroupEquation = this.sectionEquations.getEquation(indexOfEquation);
       }
 
     }
+
   }
 
 }
