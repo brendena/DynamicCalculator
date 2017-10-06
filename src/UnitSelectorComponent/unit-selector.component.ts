@@ -11,9 +11,7 @@ declare var  convert :any;
 
 @Component({
   selector: 'unit-selector',
-  template: `,
-  <p>unit selector</p>
-
+  template: `
   <md-select placeholder="select system" [(ngModel)]="selectedSystem">
     <md-option *ngFor="let system of systems"  [value]="system">
       {{ system }}

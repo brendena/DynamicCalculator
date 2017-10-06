@@ -3,6 +3,10 @@
 			"title": "Quantity Times Price",
 			"fileName": "QuantityTimesPrice",
 			"description": "",
+			"groupVariable":[
+				  {"title":"firstTest","group":["Pound","Price"]}
+
+			],
 			"variables": [
         {
 					"title": "Pound",
@@ -10,8 +14,6 @@
 					"description": "second best description",
 					"type": "Number",
 					"defaultValue": 9,
-
-
 					"range": {
 						"minimum": 8,
 						"maximum": 10
@@ -56,7 +58,7 @@
 			"variables": [{
 					"title": "d",
 					"description": "best description",
-					"type": "Number",
+					"type": "LiquidVolume",
 					"defaultValue": 4,
 					"shortHand": "d",
 					"range": {

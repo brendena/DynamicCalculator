@@ -18,6 +18,7 @@ import { List, Map } from 'immutable';
 })
 export class EquationDisplayComponent {
   @Input() equation: Equation;
+  groupVaraibles:any = {};
 
   userInputSubject = new Subject<{"shortHand":string ,"value":number, "unit": string}>();
   usersInputValues: Map<string,{"value":number,"unit":number}>;
@@ -34,11 +35,36 @@ export class EquationDisplayComponent {
   proper
   */
   ngOnInit(){
+    /*
+    //So i don't know exactle what the best way of managing the
+    //list
+    this.equation.variables.filter((item)=>{
+
+      let asdf = this.equation.groupVariable.filter((groupVariable)=>{
+        if(groupVariable.group.indexOf(item.shortHand) != -1){
+          let key = groupVariable.title
+          this.groupVaraibles[key] = this.groupVaraibles[key] || []
+          this.groupVaraibles[key].push(item);
+          return true;
+        }
+        return false;
+      });
+      console.log(asdf)
+
+      if(asdf){
+        return false
+      }
+      return true;
+    })
+    */
+
+
     //var map = new Map([["key1", "value1"], ["key2", "value2"]]);
 
     var test = this.equation.variables.map(function(variable){
-      let units = "number";
-      if(variable.type != "number")
+      let units = "Number";
+      console.log(variable.type)
+      if(variable.type != "Number")
         units = "";
       return [variable.shortHand, {"value":variable.defaultValue, "unit": units} ];
     })
@@ -51,6 +77,10 @@ export class EquationDisplayComponent {
 
       this.finalValue = this.mathMLConvert.solve(this.getValueInputValue())
     }.bind(this));
+
+
+
+
     /*observer is when mathMl Object get aquired */
     var mathMlObserver = this.mathMLAcqureService.getMathMLObserver();
     this.mathMLTextObserver = mathMlObserver;

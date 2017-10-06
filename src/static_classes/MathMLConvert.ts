@@ -27,7 +27,8 @@ export class MathMLConvert  {
         if(variableValues[splitValues[0]].unit != "Number"){
           /*
           parse the element here
-          If the unit is not nothing then try and converting it
+          If the unit is not no
+          console.log(variableValues[splitValues[0]].unit)thing then try and converting it
           */
           if(variableValues[splitValues[0]].unit != ""){
             returnValue = convert(variableValues[splitValues[0]].value).from(variableValues[splitValues[0]].unit).to(splitValues[1]);

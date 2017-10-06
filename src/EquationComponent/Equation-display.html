@@ -3,8 +3,8 @@
 <div id="variableContainer" *ngIf="equation">
   <div  *ngFor="let variable of equation.variables">
     <div *ngIf="variable.type != 'Function'">
-      <variable-display [variable]="variable"
-                        [userInputSubject]="userInputSubject"></variable-display>
+        <variable-display [variable]="variable"
+                          [userInputSubject]="userInputSubject"></variable-display>
     </div>
     <div *ngIf="variable.type == 'Function'" >
       <equation-container [equationName]="variable.title">

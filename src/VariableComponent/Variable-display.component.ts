@@ -11,18 +11,25 @@ import 'rxjs'
   providers: [],
   template: `
   <md-card class="example-card">
-  <md-card-header>
-    <md-card-title>{{variable.title}}</md-card-title>
-    <md-card-subtitle>{{variable.description}}</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-      <md-form-field class="example-full-width">
-         <input mdInput type="{{variable.type}}" value="{{variable.defaultValue}}" [ngModel]="userInput" (ngModelChange)="changeUserInputValue($event)">
-      </md-form-field>
-  </md-card-content>
+     <md-card-header>
 
-</md-card>
-<unit-selector [unitType]="'LiquidVolume'" (changedUnit)="changeInputUnit($event)" ></unit-selector>
+       <md-card-title>{{variable.title}}</md-card-title>
+       <md-card-subtitle>{{variable.description}}</md-card-subtitle>
+
+     </md-card-header>
+     <md-card-content>
+       <md-form-field class="example-full-width">
+         <input mdInput type="{{variable.type}}" value="{{variable.defaultValue}}" [ngModel]="userInput" (ngModelChange)="changeUserInputValue($event)">
+
+
+       </md-form-field>
+       <div *ngIf="variable.type != 'Number'">
+         <unit-selector [unitType]="'LiquidVolume'" (changedUnit)="changeInputUnit($event)" ></unit-selector>
+       </div>
+     </md-card-content>
+   </md-card>
+
+
   `
 })
 export class VariableDisplayComponent {
@@ -39,7 +46,9 @@ export class VariableDisplayComponent {
     this.changeUserInputValue(this.userInput)
   }
   changeUserInputValue(newValue){
-    if(this.variable.type != "Number"){
+
+    if(this.variable.type == "Number"){
+
       this.userInputSubject.next({ "shortHand":String(this.variable.shortHand) ,"value": Number(newValue), "unit": this.variable.type}) //= this.usersInputValues.set(this.variable.title,newValue );
     }
     else{
