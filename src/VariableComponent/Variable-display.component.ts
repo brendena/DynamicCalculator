@@ -22,18 +22,32 @@ import 'rxjs'
   </md-card-content>
 
 </md-card>
-
+<unit-selector [unitType]="'LiquidVolume'" (changedUnit)="changeInputUnit($event)" ></unit-selector>
   `
 })
 export class VariableDisplayComponent {
   @Input() variable: Variable;
-  @Input() userInputSubject: Subject<{"shortHand":string,"value":number}>;
+  @Input() userInputSubject: Subject<{"shortHand":string,"value":number, "unit": string}>;
   userInput: number;
+  inputUnit: string = "";
   constructor(){
 
   }
+  changeInputUnit(unit){
+    console.log(unit)
+    this.inputUnit = unit;
+    this.changeUserInputValue(this.userInput)
+  }
   changeUserInputValue(newValue){
-    this.userInputSubject.next({ "shortHand":String(this.variable.shortHand) ,"value": Number(newValue)}) //= this.usersInputValues.set(this.variable.title,newValue );
+    if(this.variable.type != "Number"){
+      this.userInputSubject.next({ "shortHand":String(this.variable.shortHand) ,"value": Number(newValue), "unit": this.variable.type}) //= this.usersInputValues.set(this.variable.title,newValue );
+    }
+    else{
+      if(this.inputUnit != ""){
+        this.userInputSubject.next({ "shortHand":String(this.variable.shortHand) ,"value": Number(newValue), "unit": this.inputUnit}) //= this.usersInputValues.set(this.variable.title,newValue );
+      }
+    }
+
   }
   ngOnInit(){
     this.userInput = this.variable.defaultValue;

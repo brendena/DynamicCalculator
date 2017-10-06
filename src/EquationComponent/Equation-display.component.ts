@@ -5,6 +5,7 @@ import { Equation }          from '../static_classes/Equation'
 import { Variable }          from '../static_classes/Variable'
 import { MathMLAcqureService } from '../data/mathML-acquire.service'
 import { MathMLConvert } from '../static_classes/MathMLConvert';
+declare var  convert :any;
 
 import 'rxjs'
 import { List, Map } from 'immutable';
@@ -18,8 +19,8 @@ import { List, Map } from 'immutable';
 export class EquationDisplayComponent {
   @Input() equation: Equation;
 
-  userInputSubject = new Subject<{"shortHand":string ,"value":number}>();
-  usersInputValues: Map<string,number>;
+  userInputSubject = new Subject<{"shortHand":string ,"value":number, "unit": string}>();
+  usersInputValues: Map<string,{"value":number,"unit":number}>;
 
   mathMLTextObserver: Observable<string>;
   mathMLConvert: MathMLConvert = new MathMLConvert();
@@ -36,14 +37,17 @@ export class EquationDisplayComponent {
     //var map = new Map([["key1", "value1"], ["key2", "value2"]]);
 
     var test = this.equation.variables.map(function(variable){
-      return [variable.shortHand, variable.defaultValue];
+      let units = "number";
+      if(variable.type != "number")
+        units = "";
+      return [variable.shortHand, {"value":variable.defaultValue, "unit": units} ];
     })
-    this.usersInputValues = Map(test) as Map<string,number>;
+    this.usersInputValues = Map(test) as Map<string,{"value":number,"unit":number}>;
 
     /*when sombody changes there value the'll send a observable to this point
       with there key and the new value*/
     this.userInputSubject.asObservable().subscribe(function(inputChange){
-      this.usersInputValues = this.usersInputValues.set(inputChange.shortHand, inputChange.value);
+      this.usersInputValues = this.usersInputValues.set(inputChange.shortHand, {"value":inputChange.value, "unit": inputChange.unit});
 
       this.finalValue = this.mathMLConvert.solve(this.getValueInputValue())
     }.bind(this));

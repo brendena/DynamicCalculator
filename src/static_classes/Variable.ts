@@ -15,7 +15,7 @@ let VariableImmutable = Record({
 export class Variable extends VariableImmutable {
   title: string;
   description: string;
-  type: number;
+  type: string;
   defaultValue: number;
   range: Range;
   shortHand: string;

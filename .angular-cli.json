@@ -22,6 +22,7 @@
         "styles.css"
       ],
       "scripts": [
+        "./externalLib/ConvertUnits.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

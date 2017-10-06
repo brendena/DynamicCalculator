@@ -13,9 +13,9 @@ import { MathjaxDisplayComponent } from '../mathjax-display/mathjax-display.comp
 import { EquationAcquireService } from '../data/equations-acquire.service'
 import { SectionEquationAcquireService } from '../data/section-equation-acquire.service'
 import { EquationContainerComponent } from '../EquationContainer/equation-container.component';
+import { UnitSelectorComponent } from '../UnitSelectorComponent/unit-selector.component'
 
-
-import {MdButtonModule, MdCheckboxModule, MatSidenavModule, MatCardModule, MatInputModule, MatToolbarModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MatSidenavModule, MatCardModule, MatInputModule, MatToolbarModule, MatSelectModule} from '@angular/material';
 
 import { routes } from './app.router';
 
@@ -27,7 +27,8 @@ import { routes } from './app.router';
     VariableDisplayComponent,
     AboutPageComponent,
     MathjaxDisplayComponent,
-    EquationContainerComponent
+    EquationContainerComponent,
+    UnitSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +41,7 @@ import { routes } from './app.router';
     MatCardModule,
     MatInputModule,
     MatToolbarModule,
+    MatSelectModule,
     routes
   ],
   providers: [EquationAcquireService,SectionEquationAcquireService],

@@ -16,9 +16,9 @@
             "equationTitle"
           ]
       },
-      {"title":"Sugar Content",
+      {"title":"Sugar Content - 86 percent Rule",
         "equations":[
-            "equationTitle"
+            "86MapleSyrupRule"
           ]
       },
       {"title":"Reverse Osmosis",
@@ -29,6 +29,11 @@
       {"title":"Brix Adjustment",
         "equations":[
             "equationTitle"
+          ]
+      },
+      {"title":"Test",
+        "equations":[
+            "Test"
           ]
       }
   ]

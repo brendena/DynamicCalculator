@@ -32,39 +32,16 @@
 			]
 
 		}, {
-			"title": "test !",
-			"fileName": "basic",
+			"title": "Sap to Syrup Ration - 86 Rule",
+			"fileName": "86MapleSyrupRule",
 			"description": "",
-			"variables": [{
-					"title": "meat pie",
-					"description": "",
-					"type": "Function",
-					"defaultValue": 4,
-					"shortHand": "x",
-					"range": {
-						"minimum": 5,
-						"maximum": 10
-					}
-
-				},
+			"variables": [
 				{
-					"title": "y",
+					"title": "PercentSugar",
 					"description": "second best description",
 					"type": "Number",
-					"defaultValue": 9,
-
-					"shortHand": "y",
-					"range": {
-						"minimum": 8,
-						"maximum": 10
-					}
-				},
-				{
-					"title": "z",
-					"description": "second best description",
-					"type": "Number",
-					"defaultValue": 9,
-					"shortHand": "z",
+					"defaultValue": 2,
+					"shortHand": "PercentSugar",
 					"range": {
 						"minimum": 8,
 						"maximum": 10
@@ -73,43 +50,20 @@
 			]
 		},
 		{
-			"title": "meat pie",
-			"fileName": "basic",
+			"title": "Test",
+			"fileName": "Test",
 			"description": "",
 			"variables": [{
-					"title": "x",
+					"title": "d",
 					"description": "best description",
 					"type": "Number",
 					"defaultValue": 4,
-					"shortHand": "x",
+					"shortHand": "d",
 					"range": {
 						"minimum": 5,
 						"maximum": 10
 					}
 
-				},
-				{
-					"title": "y",
-					"description": "second best description",
-					"type": "Number",
-					"defaultValue": 9,
-
-					"shortHand": "y",
-					"range": {
-						"minimum": 8,
-						"maximum": 10
-					}
-				},
-				{
-					"title": "z",
-					"description": "second best description",
-					"type": "Number",
-					"defaultValue": 9,
-					"shortHand": "z",
-					"range": {
-						"minimum": 8,
-						"maximum": 10
-					}
 				}
 			]
 		},
