@@ -14,3 +14,6 @@ So what i'm working on is to have a json object that you can put all your formul
 
 I'm using MathML for the formulas. 
 
+I'm using Algebra.js for solving for variables.
+
+
