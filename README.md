@@ -1,27 +1,16 @@
-# CalculatorApp
+# DynamicCalculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
+## In development
 
-## Development server
+I see many type of calculation app and they don't do many of the things i want
+* solve for missing variable. 
+* show equation
+* Allow me to choice proper unites
+* Equations built of equations
+* Look nice
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+So what i'm working on is to have a json object that you can put all your formulas into and it will create a beatiful calculator app.  
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+I'm using MathML for the formulas. 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
